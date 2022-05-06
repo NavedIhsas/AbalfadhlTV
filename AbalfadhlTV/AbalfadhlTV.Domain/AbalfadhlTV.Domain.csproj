@@ -6,10 +6,4 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="VicariousPilgrimageAgg\" />
-    <Folder Include="OfflinePilgrimageAgg\" />
-    <Folder Include="OnlinePilgrimageAgg\" />
-  </ItemGroup>
-
 </Project>

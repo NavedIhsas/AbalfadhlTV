@@ -27,6 +27,7 @@ namespace AbalfadhlTV.Persistence.Contexts
                 builder.Entity(entityType.Name).Property<DateTime?>("UpdateTime");
                 builder.Entity(entityType.Name).Property<DateTime?>("RemoveTime");
                 builder.Entity(entityType.Name).Property<bool>("IsRemoved");
+                builder.Entity(entityType.Name).Property<string>("HashCode");
             }
 
             base.OnModelCreating(builder);
@@ -45,6 +46,7 @@ namespace AbalfadhlTV.Persistence.Contexts
                 var updated = entityType?.FindProperty("UpdateTime");
                 var removeTime = entityType?.FindProperty("RemoveTime");
                 var isRemoved = entityType?.FindProperty("IsRemoved");
+                var hashCode = entityType?.FindProperty("HashCode");
                 if (item.State == EntityState.Added && inserted != null)
                 {
                     item.Property("InsertTime").CurrentValue = DateTime.Now;
@@ -52,6 +54,10 @@ namespace AbalfadhlTV.Persistence.Contexts
                 if (item.State == EntityState.Modified && updated != null)
                 {
                     item.Property("UpdateTime").CurrentValue = DateTime.Now;
+                }
+                if (item.State == EntityState.Modified && hashCode != null)
+                {
+                    item.Property("HashCode").CurrentValue = Guid.NewGuid().ToString();
                 }
 
                 if (item.State != EntityState.Deleted || removeTime == null || isRemoved == null) continue;

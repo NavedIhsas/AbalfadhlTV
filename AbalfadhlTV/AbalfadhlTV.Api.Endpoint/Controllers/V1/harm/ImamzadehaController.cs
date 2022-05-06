@@ -2,12 +2,11 @@
 using AbalfadhlTV.Common.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AbalfadhlTV.Api.Endpoint.Controllers.V1
+namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.harm
 {
     [ApiVersion("1")]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/harm/[controller]")]
     [ApiController]
-   
     public class ImamzadehaController : ControllerBase
     {
         private readonly ICountryImamzadehServices _services;
@@ -19,7 +18,7 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1
 
 
         [HttpGet]
-        public IActionResult Get(int page = 1, int pageSize = 10)
+        public IActionResult Get(int page = 1, int pageSize = 50)
         {
             var result = _services.GetList(page, pageSize).Data.Select(x => new CountryImamzadehListDto()
             {

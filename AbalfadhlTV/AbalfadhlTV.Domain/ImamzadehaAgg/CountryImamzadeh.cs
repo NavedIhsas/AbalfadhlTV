@@ -9,9 +9,12 @@ namespace AbalfadhlTV.Domain.ImamzadehaAgg
         {
             Name=name;
         }
+
+
         public long Id { get; set; }
         public string Name { get; set; }
         public ICollection<CitiesImamzadeh> CitiesImamzadeh { get; set; }
+
 
         public void Edit(string name)
         {
