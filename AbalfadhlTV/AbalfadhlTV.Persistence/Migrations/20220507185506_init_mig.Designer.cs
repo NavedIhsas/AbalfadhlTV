@@ -4,6 +4,7 @@ using AbalfadhlTV.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AbalfadhlTV.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220507185506_init_mig")]
+    partial class init_mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +35,6 @@ namespace AbalfadhlTV.Persistence.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("Child")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -48,9 +47,6 @@ namespace AbalfadhlTV.Persistence.Migrations
                     b.Property<DateTime>("InsertTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsNeabati")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsRemoved")
                         .HasColumnType("bit");
 
@@ -60,11 +56,11 @@ namespace AbalfadhlTV.Persistence.Migrations
                     b.Property<long?>("ParentBeqaId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdateTime")
                         .HasColumnType("datetime2");
@@ -158,9 +154,6 @@ namespace AbalfadhlTV.Persistence.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsZerih")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsZiaratOnline")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")

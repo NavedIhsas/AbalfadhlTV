@@ -1,5 +1,6 @@
-﻿using AbalfadhlTV.Application.Interfaces.Contexts;
+﻿using AbalfadhlTV.Application.Services.Contexts;
 using AbalfadhlTV.Domain.Attributes;
+using AbalfadhlTV.Domain.BeqaAgg;
 using AbalfadhlTV.Domain.ImamzadehaAgg;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,14 @@ namespace AbalfadhlTV.Persistence.Contexts
         public DbSet<CitiesImamzadeh> CitiesImamzadehs { get; set; }
         public DbSet<ItemsImamzadeh> ItemsImamzadehs { get; set; }
 
+        public DbSet<Beqa> Beqas { get; set; }
+        public DbSet<PersonBeqa> PersonBeqas { get; set; }
+        public DbSet<BeqaContact> BeqaContacts { get; set; }
+        public DbSet<BeqaTagType> BeqaTagTypes { get; set; }
+        public DbSet<BeqaCoordinates> BeqaCoordinates { get; set; }
+        public DbSet<Media> Medias { get; set; }
+        public DbSet<MediaFormat> MediaFormats { get; set; }
+        public DbSet<Camera> Cameras { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -33,6 +42,7 @@ namespace AbalfadhlTV.Persistence.Contexts
             base.OnModelCreating(builder);
         }
 
+      
         public override int SaveChanges()
         {
             var modifiedEntries = ChangeTracker.Entries()

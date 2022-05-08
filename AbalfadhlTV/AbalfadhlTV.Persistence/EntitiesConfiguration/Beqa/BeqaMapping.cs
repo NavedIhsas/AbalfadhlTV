@@ -14,7 +14,7 @@ namespace AbalfadhlTV.Persistence.EntitiesConfiguration.Beqa
             builder.Property(x => x.Country).HasMaxLength(100);
             builder.Property(x => x.Name).HasMaxLength(250);
             builder.HasMany(x => x.Beqas).WithOne(x => x.ParentBeqa)
-                .HasForeignKey(x => x.ParentId)
+                .HasForeignKey(x => x.Child)
                 .OnDelete(DeleteBehavior.Cascade);
         
             builder.HasMany(x => x.Cameras).WithOne(x => x.Beqa)

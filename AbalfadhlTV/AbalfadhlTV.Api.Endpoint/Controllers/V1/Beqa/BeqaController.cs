@@ -1,17 +1,18 @@
-﻿using AbalfadhlTV.Application.Interfaces.Imamzadeha;
+﻿using AbalfadhlTV.Application.Dtos.Beqa;
+using AbalfadhlTV.Application.Services.Beqa;
 using AbalfadhlTV.Common.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.harm
+namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
 {
     [ApiVersion("1")]
-    [Route("api/v{version:apiVersion}/harm/[controller]")]
+    [Route("api/v{version:apiVersion}/Beqa/[controller]")]
     [ApiController]
-    public class ImamzadehaController : ControllerBase
+    public class BeqaController : ControllerBase
     {
-        private readonly ICountryImamzadehServices _services;
+        private readonly IBeqaService _services;
 
-        public ImamzadehaController(ICountryImamzadehServices services)
+        public BeqaController(IBeqaService services)
         {
             _services = services;
         }
@@ -20,7 +21,7 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.harm
         [HttpGet]
         public IActionResult Get(int page = 1, int pageSize = 50)
         {
-            var result = _services.GetList(page, pageSize).Data.Select(x => new CountryImamzadehListDto()
+            var result = _services.GetList(page, pageSize).Data.Select(x => new GetBeqaList()
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -28,19 +29,19 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.harm
                 {
                     new Link()
                     {
-                        Href = Url.Action(nameof(Get), "Imamzadeha", new { x.Id }, Request.Scheme),
+                        Href = Url.Action(nameof(Get), "Beqa", new { x.Id }, Request.Scheme),
                         Method = "Get",
                         Ref = "Self"
                     },
                     new Link()
                     {
-                        Href = Url.Action(nameof(Put), "Imamzadeha", Request.Scheme),
+                        Href = Url.Action(nameof(Put), "Beqa", Request.Scheme),
                         Method = "Put",
                         Ref = "Update"
                     },
                     new Link()
                     {
-                        Href = Url.Action(nameof(Delete), "Imamzadeha", new { x.Id }, Request.Scheme),
+                        Href = Url.Action(nameof(Delete), "Beqa", new { x.Id }, Request.Scheme),
                         Method = "Delete",
                         Ref = "Delete"
                     },
@@ -55,23 +56,22 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.harm
         public IActionResult Get(int id)
         {
             var result = _services.FindById(id);
-            var res = new CountryImamzadehDto() { Id = result.Data.Id, Name = result.Data.Name };
+            var res = new GetBeqaList() { Id = result.Data.Id, Name = result.Data.Name };
 
             return Ok(res);
         }
 
 
         [HttpPost]
-        public IActionResult Post([FromBody] string name)
+        public IActionResult Post([FromBody] AddBeqa command)
         {
-            var command = new CountryImamzadehDto() { Name = name };
             var result = _services.Add(command);
-            var url = Url.Action(nameof(Get), "Imamzadeha", new { Id = result.Data.Id }, Request.Scheme);
+            var url = Url.Action(nameof(Get), "Beqa", new { Id = result.Data.Id }, Request.Scheme);
             return Created(url, result.Message);
         }
 
         [HttpPut()]
-        public IActionResult Put([FromBody] CountryImamzadehDto command)
+        public IActionResult Put([FromBody] EditBeqa command)
         {
             var result = _services.Edit(command);
             return Ok(result.Message);

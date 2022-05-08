@@ -1,15 +1,15 @@
-﻿using AbalfadhlTV.Application.Interfaces.Imamzadeha;
+﻿using AbalfadhlTV.Application.Dtos.Beqa;
+using AbalfadhlTV.Domain.BeqaAgg;
 using AutoMapper;
-using CountryImamzadeh = AbalfadhlTV.Domain.ImamzadehaAgg.CountryImamzadeh;
 
 namespace AbalfadhlTV.infrastructure.Mapper
 {
-    public class ImamzadehAutoMapperConfiguration:Profile
+    public class BeqaAutoMapperConfiguration:Profile
     {
-        public ImamzadehAutoMapperConfiguration()
+        public BeqaAutoMapperConfiguration()
         {
-            CreateMap<CountryImamzadeh, CountryImamzadehDto>().ReverseMap();
-            CreateMap<CountryImamzadeh, CountryImamzadehListDto>();
+            CreateMap<Beqa, AddBeqa>().ReverseMap();
+            CreateMap<Beqa, EditBeqa>();
 
             //CreateMap<CatalogType, MenuItemDto>()
             //    .ForMember(dest => dest.Name, opt =>

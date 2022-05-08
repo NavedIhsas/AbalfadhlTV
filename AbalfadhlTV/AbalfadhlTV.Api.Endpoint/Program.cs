@@ -1,5 +1,5 @@
-using AbalfadhlTV.Application.Interfaces.Contexts;
-using AbalfadhlTV.Application.Interfaces.Imamzadeha;
+using AbalfadhlTV.Application.Services.Beqa;
+using AbalfadhlTV.Application.Services.Contexts;
 using AbalfadhlTV.infrastructure.Mapper;
 using AbalfadhlTV.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(ImamzadehAutoMapperConfiguration));
+builder.Services.AddAutoMapper(typeof(BeqaAutoMapperConfiguration));
 builder.Services.AddApiVersioning(options =>
 {
     options.AssumeDefaultVersionWhenUnspecified = true;
@@ -30,7 +30,7 @@ builder.Services.AddScoped<IDatabaseContext, DatabaseContext>();
 
 #region IOC
 
-builder.Services.AddScoped<ICountryImamzadehServices, CountryImamzadehServices>();
+builder.Services.AddScoped<IBeqaService, BeqaService>();
 
 #endregion
 

@@ -2,9 +2,11 @@
 {
     public class BaseDto<T>
     {
-        public BaseDto(bool isSuccess, List<string> message, T data)
+        public BaseDto(bool isSuccess, List<string> message, T data )
         {
             this.IsSuccess = isSuccess;
+            message ??= new List<string> {"عملیات با موفقیت انجام شد"};
+          
             this.Message = message;
             this.Data = data;
         }

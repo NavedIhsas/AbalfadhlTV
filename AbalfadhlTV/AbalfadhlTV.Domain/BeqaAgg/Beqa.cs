@@ -6,11 +6,13 @@ namespace AbalfadhlTV.Domain.BeqaAgg
     public class Beqa
     {
         public long Id { get; set; }
+        public string Type { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public long? ParentId { get; set; }
+        public long? Child { get; set; }
+        public bool IsNeabati { get; set; }
         public Beqa ParentBeqa { get; set; }
         public ICollection<Beqa> Beqas { get; set; }
         public ICollection<BeqaTagType> BeqaTagTypes { get; set; }
@@ -48,6 +50,7 @@ namespace AbalfadhlTV.Domain.BeqaAgg
         public string Name { get; set; }
         public bool IsZerih { get; set; }
         public long BeqaId { get; set; }
+        public bool IsZiaratOnline { get; set; }
         public Beqa Beqa { get; set; }
     }
 

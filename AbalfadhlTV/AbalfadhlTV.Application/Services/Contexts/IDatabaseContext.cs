@@ -1,10 +1,20 @@
-﻿using AbalfadhlTV.Domain.ImamzadehaAgg;
+﻿using AbalfadhlTV.Domain.BeqaAgg;
+using AbalfadhlTV.Domain.ImamzadehaAgg;
 using Microsoft.EntityFrameworkCore;
 
-namespace AbalfadhlTV.Application.Interfaces.Contexts
+namespace AbalfadhlTV.Application.Services.Contexts
 {
     public interface IDatabaseContext
     {
+       DbSet<Domain.BeqaAgg.Beqa> Beqas { get; set; }
+       DbSet<PersonBeqa> PersonBeqas { get; set; }
+       DbSet<BeqaContact> BeqaContacts { get; set; }
+       DbSet<BeqaTagType> BeqaTagTypes { get; set; }
+       DbSet<BeqaCoordinates> BeqaCoordinates { get; set; }
+       DbSet<Media> Medias { get; set; }
+       DbSet<MediaFormat> MediaFormats { get; set; }
+       DbSet<Camera> Cameras { get; set; }
+
         DbSet<CountryImamzadeh> CountriesImamzadehs { get; set; }
         DbSet<CitiesImamzadeh> CitiesImamzadehs { get; set; }
         DbSet<ItemsImamzadeh> ItemsImamzadehs { get; set; }
