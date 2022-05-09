@@ -9,7 +9,9 @@ namespace AbalfadhlTV.infrastructure.Mapper
         public BeqaAutoMapperConfiguration()
         {
             CreateMap<Beqa, AddBeqa>().ReverseMap();
-            CreateMap<Beqa, EditBeqa>();
+            CreateMap<Beqa, EditBeqa>().ReverseMap();
+            CreateMap<Beqa, GetBeqaList>().ReverseMap();
+            CreateMap<Beqa, BeqaSearchModel>().ReverseMap();
 
             //CreateMap<CatalogType, MenuItemDto>()
             //    .ForMember(dest => dest.Name, opt =>

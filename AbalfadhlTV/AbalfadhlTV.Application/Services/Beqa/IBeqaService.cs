@@ -69,7 +69,7 @@ namespace AbalfadhlTV.Application.Services.Beqa
         {
             var data = _context.Beqas.Find(id);
             var result = _mapper.Map<GetBeqaList>(data);
-            return new BaseDto<GetBeqaList>( result);
+            return new BaseDto<GetBeqaList>( true,new List<string>(),result);
         }
 
         public PaginatedItemsDto<GetBeqaList> GetList(int page, int pageSize)

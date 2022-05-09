@@ -5,6 +5,8 @@ namespace AbalfadhlTV.Application.Dtos.Beqa
     public class AddBeqa
     {
       
+        public long Id { get; set; }
+        public string Type { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
@@ -14,7 +16,6 @@ namespace AbalfadhlTV.Application.Dtos.Beqa
 
     public class EditBeqa : AddBeqa
     {
-        public long Id { get; set; }
     }
 
     public class BeqaSearchModel
@@ -24,7 +25,7 @@ namespace AbalfadhlTV.Application.Dtos.Beqa
 
     public class GetBeqaList:AddBeqa
     {
-        public long Id { get; set; }
+      
         public List<Link> Links { get; set; }
     }
 
