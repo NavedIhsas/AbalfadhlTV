@@ -1,12 +1,13 @@
 ﻿using AbalfadhlTV.Application.Dtos.Beqa;
 using AbalfadhlTV.Application.Services.Beqa;
 using AbalfadhlTV.Common.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
 {
     [ApiVersion("1")]
-    
+    [Authorize]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class BeqaController : ControllerBase
@@ -21,7 +22,6 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
 
 
         [HttpGet]
-       // [Route("{apiKey}&{page}&{pageSize}")]
         public IActionResult Get(string apiKey= "2A2BB29A-C828-4E00-B47E-B7FD1A9FFB01", int page = 1, int pageSize = 30)
         {
             var result = _services.GetList(page, pageSize).Data.Select(x => new GetBeqaList()
@@ -31,7 +31,6 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
                 Type = x.Type,
                 Country = x.Country,
                 City = x.City,
-                Child = x.Child,
                 Address = x.Address,
                 Links = new List<Link>()
                 {
@@ -55,10 +54,9 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
                     },
                 }
 
-            });
+            }).ToList();
             return Ok(result);
         }
-
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -66,7 +64,6 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
             var result = _services.FindById(id);
             return Ok(result);
         }
-
 
         [HttpPost]
         public IActionResult Post([FromBody] AddBeqa command)

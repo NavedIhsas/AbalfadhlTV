@@ -8,13 +8,14 @@ namespace AbalfadhlTV.Persistence.EntitiesConfiguration.Beqa
     {
         public void Configure(EntityTypeBuilder<Domain.BeqaAgg.Beqa> builder)
         {
+            builder.ToTable("Beqas", "beqa");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Address).HasMaxLength(500);
             builder.Property(x => x.City).HasMaxLength(250);
             builder.Property(x => x.Country).HasMaxLength(100);
             builder.Property(x => x.Name).HasMaxLength(250);
             builder.HasMany(x => x.Beqas).WithOne(x => x.ParentBeqa)
-                .HasForeignKey(x => x.Child)
+                .HasForeignKey(x => x.ParentId)
                 .OnDelete(DeleteBehavior.Cascade);
         
             builder.HasMany(x => x.Cameras).WithOne(x => x.Beqa)

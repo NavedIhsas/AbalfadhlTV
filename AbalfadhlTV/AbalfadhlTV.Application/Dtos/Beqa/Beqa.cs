@@ -11,7 +11,6 @@ namespace AbalfadhlTV.Application.Dtos.Beqa
         public string Country { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public long? Child { get; set; } = null;
     }
 
     public class EditBeqa : AddBeqa

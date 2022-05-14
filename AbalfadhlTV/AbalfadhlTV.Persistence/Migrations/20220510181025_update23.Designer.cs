@@ -4,6 +4,7 @@ using AbalfadhlTV.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AbalfadhlTV.Persistence.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220510181025_update23")]
+    partial class update23
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("ParentBeqaId");
 
-                    b.ToTable("Beqas", (string)null);
+                    b.ToTable("Beqas");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.BeqaContact", b =>
@@ -100,7 +102,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("BeqaId");
 
-                    b.ToTable("BeqaContacts", (string)null);
+                    b.ToTable("BeqaContacts");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.BeqaCoordinates", b =>
@@ -124,7 +126,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("BeqaId");
 
-                    b.ToTable("BeqaCoordinates", (string)null);
+                    b.ToTable("BeqaCoordinates");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.BeqaTagType", b =>
@@ -143,7 +145,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BeqaTagTypes", (string)null);
+                    b.ToTable("BeqaTagTypes");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.Camera", b =>
@@ -176,7 +178,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("BeqaId");
 
-                    b.ToTable("Cameras", (string)null);
+                    b.ToTable("Cameras");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.Media", b =>
@@ -206,7 +208,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("BeqaId");
 
-                    b.ToTable("Medias", (string)null);
+                    b.ToTable("Medias");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.MediaFormat", b =>
@@ -236,7 +238,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("MediaId");
 
-                    b.ToTable("MediaFormats", (string)null);
+                    b.ToTable("MediaFormats");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.PersonBeqa", b =>
@@ -275,7 +277,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("BeqaId");
 
-                    b.ToTable("PersonBeqas", (string)null);
+                    b.ToTable("PersonBeqas");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.ImamzadehaAgg.CitiesImamzadeh", b =>
@@ -314,7 +316,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("CountryImamzadehId");
 
-                    b.ToTable("CitiesImamzadehs", (string)null);
+                    b.ToTable("CitiesImamzadehs");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.ImamzadehaAgg.CountryImamzadeh", b =>
@@ -345,7 +347,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CountriesImamzadehs", (string)null);
+                    b.ToTable("CountriesImamzadehs");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.ImamzadehaAgg.ItemsImamzadeh", b =>
@@ -384,7 +386,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("CitiesImamzadehId");
 
-                    b.ToTable("ItemsImamzadehs", (string)null);
+                    b.ToTable("ItemsImamzadehs");
                 });
 
             modelBuilder.Entity("BeqaBeqaTagType", b =>
@@ -399,7 +401,7 @@ namespace AbalfadhlTV.Persistence.Migrations
 
                     b.HasIndex("BeqasId");
 
-                    b.ToTable("BeqaBeqaTagType", (string)null);
+                    b.ToTable("BeqaBeqaTagType");
                 });
 
             modelBuilder.Entity("AbalfadhlTV.Domain.BeqaAgg.Beqa", b =>

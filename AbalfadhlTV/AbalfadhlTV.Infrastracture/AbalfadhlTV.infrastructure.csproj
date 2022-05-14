@@ -12,7 +12,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AbalfadhlTV.Application\AbalfadhlTV.Application.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <ProjectReference Include="..\AbalfadhlTV.Domain\AbalfadhlTV.Domain.csproj" />
+    <ProjectReference Include="..\AbalfadhlTV.Persistence\AbalfadhlTV.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

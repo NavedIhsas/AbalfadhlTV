@@ -4,6 +4,7 @@ using AbalfadhlTV.Application.Services.Contexts;
 using AbalfadhlTV.Common;
 using AbalfadhlTV.Common.Contracts;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AbalfadhlTV.Application.Services.Beqa
 {
@@ -59,7 +60,7 @@ namespace AbalfadhlTV.Application.Services.Beqa
             return new BaseDto<EditBeqa>
             (
                 true,
-                new List<string> { $"کشور {model.Name} با موفقیت ویرایش شد" },
+                new List<string> { $" {model.Name} با موفقیت ویرایش شد" },
 
                 _mapper.Map<EditBeqa>(model)
             );
@@ -68,6 +69,7 @@ namespace AbalfadhlTV.Application.Services.Beqa
         public BaseDto<GetBeqaList> FindById(long id)
         {
             var data = _context.Beqas.Find(id);
+           
             var result = _mapper.Map<GetBeqaList>(data);
             return new BaseDto<GetBeqaList>( true,new List<string>(),result);
         }
@@ -75,9 +77,9 @@ namespace AbalfadhlTV.Application.Services.Beqa
         public PaginatedItemsDto<GetBeqaList> GetList(int page, int pageSize)
         {
             int totalCount = 0;
-            var model = _context.Beqas
+            var model = _context.Beqas.Where(x=>x.ParentId==null)
                 .PagedResult<Domain.BeqaAgg.Beqa>(page, pageSize, out totalCount);
-            var result = _mapper.ProjectTo<GetBeqaList>(model).ToList();
+            var result = _mapper.ProjectTo<GetBeqaList>(model).AsNoTracking().ToList();
             return new PaginatedItemsDto<GetBeqaList>(page, pageSize, totalCount, result);
         }
     }
