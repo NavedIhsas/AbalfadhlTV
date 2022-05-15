@@ -15,10 +15,9 @@ namespace AbalfadhlTV.infrastructure.IdentityConfig
             var connectionString = configuration.GetConnectionString("AbalfadhlTVConnection");
             services.AddDbContext<IdentityDatabaseContext>(option => option.UseSqlServer(connectionString));
            
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityDatabaseContext>()
-                .AddDefaultTokenProviders().AddRoles<IdentityRole>().AddErrorDescriber<CustomIdentityErrors>();
+            services.AddIdentity<IdentityUser<long>, IdentityRole<long>>().AddEntityFrameworkStores<IdentityDatabaseContext>()
+                .AddDefaultTokenProviders().AddRoles<IdentityRole<long>>().AddErrorDescriber<CustomIdentityErrors>();
 
-           
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;

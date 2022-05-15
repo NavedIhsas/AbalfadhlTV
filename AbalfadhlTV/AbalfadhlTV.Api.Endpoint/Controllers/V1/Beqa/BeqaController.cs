@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
 {
     [ApiVersion("1")]
-    [Authorize]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class BeqaController : ControllerBase
@@ -66,11 +65,12 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.Beqa
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] AddBeqa command)
+        //[Authorize(Roles = "Admin")]
+        public IActionResult Post([FromBody]  AddBeqa command)
         {
             var result = _services.Add(command);
             var url = Url.Action(nameof(Get), "Beqa", new { Id = result.Data.Id }, Request.Scheme);
-            return Created(url, result.Message);
+            return Created(url??string.Empty, result.Message);
         }
 
         [HttpPut()]

@@ -15,9 +15,11 @@ namespace AbalfadhlTV.Application.Services.Beqa
         BaseDto<EditBeqa> Edit(EditBeqa command);
         BaseDto<GetBeqaList> FindById(long id);
         PaginatedItemsDto<GetBeqaList> GetList(int page, int pageSize);
+        BaseDto<AddBeqa> AddCollection(List<AddBeqa> command);
+        BaseDto RemoveCollection(List<long> id);
     }
 
-    public class BeqaService: IBeqaService
+    public class BeqaService : IBeqaService
     {
 
         private readonly IDatabaseContext _context;
@@ -35,8 +37,31 @@ namespace AbalfadhlTV.Application.Services.Beqa
             return new BaseDto<AddBeqa>
             (
                 true,
-                new List<string> { $"کشور {model.Name}  با موفقیت در سیستم ثبت شد" },
+                new List<string> { "عملیات با موفقیت انجام شد" },
                 _mapper.Map<AddBeqa>(model)
+            );
+        }
+        public BaseDto<AddBeqa> AddCollection(List<AddBeqa> command)
+        {
+            if (command!=null && command.Any())
+            {
+                var model = new Domain.BeqaAgg.Beqa();
+                foreach (var list in command)
+                {
+                    model = _mapper.Map<Domain.BeqaAgg.Beqa>(list);
+                    _context.Beqas.Add(model);
+                    _context.SaveChanges();
+                }
+                return new BaseDto<AddBeqa>
+                (
+                    true,
+                    new List<string> { $"عملیات با موفقیت انجام شد" },
+                    _mapper.Map<AddBeqa>(model)
+                );
+            }
+            return new BaseDto<AddBeqa>
+            (
+                false
             );
         }
 
@@ -51,11 +76,30 @@ namespace AbalfadhlTV.Application.Services.Beqa
                 new List<string> { $"ایتم با موفقیت حذف شد" }
             );
         }
+         public BaseDto RemoveCollection(List<long> id)
+         {
+             if (!id.Any())
+                 return new BaseDto
+                     (false);
+
+            foreach (var beqa in id.Select(removeId => _context.Beqas.Find(removeId)))
+            {
+                if (beqa != null) _context.Beqas.Remove(beqa);
+                _context.SaveChanges();
+            }
+
+            return new BaseDto
+            (
+                true,
+                new List<string> { $"ایتم با موفقیت حذف شد" }
+            );
+
+        }
 
         public BaseDto<EditBeqa> Edit(EditBeqa command)
         {
             var model = _context.Beqas.SingleOrDefault(p => p.Id == command.Id);
-            ((IMapperBase) _mapper).Map<EditBeqa, Domain.BeqaAgg.Beqa>(command, model);
+            ((IMapperBase)_mapper).Map<EditBeqa, Domain.BeqaAgg.Beqa>(command, model);
             _context.SaveChanges();
             return new BaseDto<EditBeqa>
             (
@@ -69,15 +113,15 @@ namespace AbalfadhlTV.Application.Services.Beqa
         public BaseDto<GetBeqaList> FindById(long id)
         {
             var data = _context.Beqas.Find(id);
-           
+
             var result = _mapper.Map<GetBeqaList>(data);
-            return new BaseDto<GetBeqaList>( true,new List<string>(),result);
+            return new BaseDto<GetBeqaList>(true, new List<string>(), result);
         }
 
         public PaginatedItemsDto<GetBeqaList> GetList(int page, int pageSize)
         {
             int totalCount = 0;
-            var model = _context.Beqas.Where(x=>x.ParentId==null)
+            var model = _context.Beqas.Where(x => x.ParentId == null)
                 .PagedResult<Domain.BeqaAgg.Beqa>(page, pageSize, out totalCount);
             var result = _mapper.ProjectTo<GetBeqaList>(model).AsNoTracking().ToList();
             return new PaginatedItemsDto<GetBeqaList>(page, pageSize, totalCount, result);
@@ -85,5 +129,5 @@ namespace AbalfadhlTV.Application.Services.Beqa
     }
 
 
-   
+
 }

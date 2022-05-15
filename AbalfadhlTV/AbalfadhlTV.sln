@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{27524805-7826-49BD-AB47-653C61F1ABFF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F0B147C-0C98-41AD-ABD5-6A20CEDE8E6E}"
+	ProjectSection(SolutionItems) = preProject
+		Note.txt = Note.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0904E6F6-9C3E-4C72-8E9F-581496D6D365}"
 EndProject

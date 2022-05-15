@@ -1,0 +1,4 @@
+﻿var role = _roleManager.Roles.FirstOrDefault(r => roleNames.AsEnumerable().Contains(r.Name))?.Name;
+سطح دسترسی فقط برای اولین نقش معتبر است.
+****************************************
+

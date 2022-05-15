@@ -4,18 +4,16 @@ using AbalfadhlTV.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AbalfadhlTV.Persistence.Migrations
+namespace AbalfadhlTV.Persistence.Migrations.Database
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220510181025_update23")]
-    partial class update23
+    partial class DatabaseContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

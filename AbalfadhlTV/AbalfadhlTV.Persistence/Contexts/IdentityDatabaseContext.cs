@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AbalfadhlTV.Persistence.Contexts
 {
-    public class IdentityDatabaseContext:IdentityDbContext
+    public class IdentityDatabaseContext:IdentityDbContext<IdentityUser<long>, IdentityRole<long>, long>
     {
         public IdentityDatabaseContext(DbContextOptions<IdentityDatabaseContext> options):base(options)
         {
@@ -24,7 +24,7 @@ namespace AbalfadhlTV.Persistence.Contexts
             builder.Entity<IdentityUserLogin<long>>().ToTable("UserLogins","identity");
             builder.Entity<IdentityUserToken<long>>().ToTable("UserTokens","identity");
             builder.Entity<IdentityUserRole<long>>().ToTable("UserRoles","identity");
-            base.OnModelCreating(builder);
+           // base.OnModelCreating(builder);
         }
     }
 }

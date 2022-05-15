@@ -26,7 +26,7 @@ namespace AbalfadhlTV.Persistence.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            var assembly = typeof(CountryImamzadeh).Assembly;
+            var assembly = typeof(Beqa).Assembly;
             builder.ApplyConfigurationsFromAssembly(assembly);
 
             foreach (var entityType in builder.Model.GetEntityTypes())

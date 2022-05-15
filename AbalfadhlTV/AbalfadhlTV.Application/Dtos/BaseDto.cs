@@ -19,6 +19,10 @@
         public List<string> Message { get; private set; }
         public bool IsSuccess { get; private set; }
 
+        public BaseDto(bool isSuccess)
+        {
+            this.IsSuccess = isSuccess;
+        }
     }
 
 
@@ -28,6 +32,11 @@
         {
             this.IsSuccess = isSuccess;
             this.Message = message;
+        }
+
+        public BaseDto(bool isSuccess)
+        {
+            this.IsSuccess=isSuccess;
         }
         public List<string> Message { get; private set; }
         public bool IsSuccess { get; private set; }

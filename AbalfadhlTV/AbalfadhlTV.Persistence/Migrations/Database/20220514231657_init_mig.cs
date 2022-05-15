@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AbalfadhlTV.Persistence.Migrations
+namespace AbalfadhlTV.Persistence.Migrations.Database
 {
     public partial class init_mig : Migration
     {
@@ -15,11 +15,13 @@ namespace AbalfadhlTV.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ParentId = table.Column<long>(type: "bigint", nullable: true),
+                    IsNeabati = table.Column<bool>(type: "bit", nullable: false),
                     ParentBeqaId = table.Column<long>(type: "bigint", nullable: true),
                     HashCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InsertTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -122,7 +124,8 @@ namespace AbalfadhlTV.Persistence.Migrations
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsZerih = table.Column<bool>(type: "bit", nullable: false),
-                    BeqaId = table.Column<long>(type: "bigint", nullable: false)
+                    BeqaId = table.Column<long>(type: "bigint", nullable: false),
+                    IsZiaratOnline = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

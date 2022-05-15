@@ -34,11 +34,7 @@ builder.Services.AddIdentityService(configuration);
 #region Connection string
 
 var connection = configuration.GetConnectionString("AbalfadhlTVConnection");
-
-
 builder.Services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(connection));
-
-
 builder.Services.AddScoped<IDatabaseContext, DatabaseContext>();
 #endregion
 

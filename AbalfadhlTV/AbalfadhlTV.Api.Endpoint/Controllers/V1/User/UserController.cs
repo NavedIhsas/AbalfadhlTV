@@ -1,5 +1,6 @@
 ﻿using AbalfadhlTV.Api.Endpoint.Models.ViewModels.Register;
 using AbalfadhlTV.Application.Dtos.Account.Users;
+using AbalfadhlTV.Common.Contracts;
 using AbalfadhlTV.infrastructure.ConstMessages;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,9 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.User
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<IdentityUser<long>> _userManager;
 
-        public UserController(UserManager<IdentityUser> userManager)
+        public UserController(UserManager<IdentityUser<long>> userManager)
         {
             _userManager = userManager;
         }
@@ -27,34 +28,56 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.User
             var users =  _userManager.Users
                 .Select(p => new UserListDto
                 {
-                    Id = Convert.ToInt64(p.Id),
-                    UserName = p.UserName,
+                    Id = p.Id,
                     Email = p.Email,
+                    Links = new List<Link>()
+                    {
+                        new Link(){ Href = Url.Action(nameof(Get),"User",new {p.Id},Request.Scheme),Method = "Get",Ref = "Self"},
+                        new Link() {Href = Url.Action(nameof(Put),"User",Request.Scheme),Method = "Put",Ref = "Update"},
+                        new Link() {Href = Url.Action(nameof(Delete),"User",new {p.Id},Request.Scheme),Method = "DELETE",Ref ="delete"},
+                        new Link() {Href = Url.Action(nameof(Get),"UserRoles",new {userId=p.Id},Request.Scheme),Method = "Get",Ref = "Self"},
+                        new Link() {Href = Url.Action(nameof(Post),"UserLogin",Request.Scheme),Method = "Get",Ref = "Self"},
+                    }
                 }).ToList();
             return Ok(users);
         }
 
 
         //ToDo
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(long id)
+        {
+            var findUser =await _userManager.FindByIdAsync(id.ToString());
+            if (findUser == null) return new JsonResult(ErrorMessage.RecordNotFount);
+
+            var user = new UserDto
+            {
+                Email = findUser.Email,
+                Id = findUser.Id,
+            };
+            return Ok(user);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] RegisterViewModel command)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            var user = new IdentityUser
+            var user = new IdentityUser<long>
             {
-                UserName = command.Username,
                 Email = command.Email,
+                UserName = command.Email,
             };
 
             var result =await _userManager.CreateAsync(user, command.Password);
-            if (result.Succeeded) return Ok();
+
+            var pasUser = new UserDto
+            {
+                Id = user.Id,
+                Email = user.Email,
+            };
+            var url = Url.Action(nameof(Get), "User", new {Id = user.Id}, Request.Scheme);
+            if (result.Succeeded) return Created(url ?? string.Empty, pasUser);
 
             else
             {
@@ -75,11 +98,16 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.User
             var user = await _userManager.FindByIdAsync(userEdit.Id.ToString());
             if (user == null) return new JsonResult(ErrorMessage.RecordNotFount);
             user.Email = userEdit.Email;
-            user.UserName = userEdit.UserName;
+            user.UserName = userEdit.Email;
 
             var result =await _userManager.UpdateAsync(user);
 
-            if (result.Succeeded) return Ok(user);
+            var customUser = new UserDto
+            {
+                Id = user.Id,
+                Email = user.Email
+            };
+            if (result.Succeeded) return Ok(customUser);
             
             foreach (var item in result.Errors.ToList())
             {
@@ -88,8 +116,10 @@ namespace AbalfadhlTV.Api.Endpoint.Controllers.V1.User
 
             return BadRequest();
         }
+
+
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromBody] long id)
+        public async Task<IActionResult> Delete(long id)
         {
 
             var user =await _userManager.FindByIdAsync(id.ToString());
