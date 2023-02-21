@@ -24,11 +24,54 @@ namespace AbalfadhlTV.Application.Services.Beqa
 
         private readonly IDatabaseContext _context;
         private readonly IMapper _mapper;
+        private bool Smoke;
         public BeqaService(IDatabaseContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
+
+
+
+
+        public void Live_Mode()
+        {
+            if (Sade() == true)
+            {
+                Smoke = false;
+                Happy.Start();
+            }
+
+            if (Love() != Coding)
+            {
+                Coffee();
+                Sleep();
+            }
+        }
+
+        private static void Sleep()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Coffee()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Coding { get; set; }
+
+        private bool Love()
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool Sade()
+        {
+            throw new NotImplementedException();
+        }
+
+
         public BaseDto<AddBeqa> Add(AddBeqa command)
         {
             var model = _mapper.Map<Domain.BeqaAgg.Beqa>(command);
@@ -128,6 +171,12 @@ namespace AbalfadhlTV.Application.Services.Beqa
         }
     }
 
+    public class Happy
+    {
+        public static void Start()
+        {
+            
 
-
+        }
+    }
 }
