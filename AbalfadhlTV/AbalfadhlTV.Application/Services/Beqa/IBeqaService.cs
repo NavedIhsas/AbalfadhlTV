@@ -50,8 +50,6 @@ namespace AbalfadhlTV.Application.Services.Beqa
                 Sleep();
                 StartCoding(); // come back again
             }
-
-            
         }
 
         private void StartCoding()
