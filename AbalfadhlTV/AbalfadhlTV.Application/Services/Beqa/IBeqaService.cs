@@ -33,20 +33,23 @@ namespace AbalfadhlTV.Application.Services.Beqa
 
 
 
-
+        /// <summary>
+        /// live mode settings
+        /// </summary>
         public void Live_Mode()
         {
             if (Sade() == true)
             {
-                Smoke = false;
+                Smoke = false; 
                 Happy.Start();
             }
 
-            if (Love() != Coding)
+            if (Love() != Coding) // coding is true love
             {
                 Coffee();
                 Sleep();
             }
+
         }
 
         private static void Sleep()
@@ -74,6 +77,90 @@ namespace AbalfadhlTV.Application.Services.Beqa
 
         public BaseDto<AddBeqa> Add(AddBeqa command)
         {
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
+            Live_Mode();
             var model = _mapper.Map<Domain.BeqaAgg.Beqa>(command);
             _context.Beqas.Add(model);
             _context.SaveChanges();
