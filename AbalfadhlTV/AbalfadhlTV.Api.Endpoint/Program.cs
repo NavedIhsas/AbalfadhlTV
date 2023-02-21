@@ -57,17 +57,8 @@ builder.Services.AddAuthentication(option =>
     configureOptions.SaveToken = true; // HttpContext.GetTokenAsunc();
     configureOptions.Events = new JwtBearerEvents
     {
-        OnAuthenticationFailed = context =>
-        {
-            //log 
-            //........
-            return Task.CompletedTask;
-        },
-        OnTokenValidated = context =>
-        {
-            //log
-            return Task.CompletedTask;
-        },
+        OnAuthenticationFailed = context => Task.CompletedTask,
+        OnTokenValidated = context => Task.CompletedTask,
         OnChallenge = context =>
         {
             return Task.CompletedTask;
@@ -92,11 +83,13 @@ builder.Services.ConfigureApplicationCookie(option =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
+app.UseSwagger();
+app.UseSwaggerUI();
+app.UseDeveloperExceptionPage();
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
 }
 
 app.UseAuthentication();

@@ -22,4 +22,6 @@ namespace AbalfadhlTV.Domain.BeqaAgg
         public ICollection<BeqaCoordinates> BeqaCoordinatesCollection { get; set; }
         public ICollection<BeqaContact> BeqaContacts { get; set; }
     }
+
+
 }
