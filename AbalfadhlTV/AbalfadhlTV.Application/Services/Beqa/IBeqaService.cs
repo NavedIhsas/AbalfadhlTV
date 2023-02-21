@@ -49,7 +49,6 @@ namespace AbalfadhlTV.Application.Services.Beqa
                 Coffee();
                 Sleep();
             }
-
         }
 
         private static void Sleep()
