@@ -48,7 +48,20 @@ namespace AbalfadhlTV.Application.Services.Beqa
             {
                 Coffee();
                 Sleep();
+                StartCoding(); // come back again
             }
+
+            
+        }
+
+        private void StartCoding()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TryAgain()
+        {
+            throw new NotImplementedException();
         }
 
         private static void Sleep()
